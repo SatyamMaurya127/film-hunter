@@ -1,7 +1,8 @@
 import React from "react";
+import HomeComponent from "../HomeComponent";
 
 const HomePageClient = () => {
-  return <div>sdfd</div>;
+  return <HomeComponent />;
 };
 
 export default HomePageClient;

@@ -7,7 +7,6 @@ import Link from "next/link";
 
 const MoviesGrid: React.FC<{ movies: any[] }> = ({ movies }) => {
   const searchParams = useSearchParams();
-  console.log(movies);
 
   if (movies.length <= 0)
     return (
@@ -27,10 +26,10 @@ const MoviesGrid: React.FC<{ movies: any[] }> = ({ movies }) => {
         {movies.map((movie) => (
           <Link href={`/movies/${movie.imdb_id || "/#"}`} key={movie.title}>
             <MovieCard
-              title={movie.title}
-              image={movie.poster_path} // Make sure this path is valid
-              rating={movie.vote_average}
-              description={movie.overview}
+              title={movie.title || ""}
+              image={movie.poster_path || ""} // Make sure this path is valid
+              rating={movie.vote_average || ""}
+              description={movie.overview || ""}
             />
           </Link>
         ))}
