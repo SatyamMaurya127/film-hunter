@@ -1,8 +1,8 @@
+import { Movie, MoviePoster } from "@/types/Movies";
 import { clsx, type ClassValue } from "clsx";
 import moment from "moment";
 import { twMerge } from "tailwind-merge";
 import { sortMovies } from "./db";
-import { Movie, MoviePoster } from "@/types/Movies";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

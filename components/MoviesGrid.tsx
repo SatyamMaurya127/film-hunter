@@ -1,10 +1,10 @@
 "use client";
 
+import { MoviePoster } from "@/types/Movies";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 import MovieCard from "./ui/movie-card";
-import { useSearchParams } from "next/navigation";
-import Link from "next/link";
-import { MoviePoster } from "@/types/Movies";
 
 interface MoviesGridProps {
   movies: MoviePoster[];

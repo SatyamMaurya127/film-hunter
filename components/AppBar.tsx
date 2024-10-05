@@ -1,17 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
 import { SearchIcon } from "lucide-react";
-import { Menubar } from "@radix-ui/react-menubar";
-import { MenubarContent, MenubarItem, MenubarShortcut } from "./ui/menubar";
-import Image from "next/image";
-import img from "@/assets/img/dummy_img.jpg";
 import Link from "next/link";
-import { searchMovies } from "@/lib/utils";
-import { FAKE_DATA_DB } from "@/lib/db";
 import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { Input } from "./ui/input";
 
 const AppBar: React.FC<{ onSearch: (query: string) => void }> = ({
   onSearch,

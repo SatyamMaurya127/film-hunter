@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { useContext, useRef } from "react";
+import { usePathname } from "next/navigation";
+import React, { useContext, useRef } from "react";
 
 // Prevents instant page opening
 function FrozenRouter(props: { children: React.ReactNode }) {
