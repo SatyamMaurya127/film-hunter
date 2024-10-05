@@ -11,42 +11,27 @@ import img from "@/assets/img/dummy_img.jpg";
 import Link from "next/link";
 import { searchMovies } from "@/lib/utils";
 import { FAKE_DATA_DB } from "@/lib/db";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const AppBar: React.FC<{ onSearch: (query: string) => void }> = ({
   onSearch,
 }) => {
   const router = useRouter();
-  const [movieList, setMovieList] = useState<any[]>([]);
-  const [isSearchFieldFocused, setIsSearchFieldFocused] = useState(false);
-  const autoCompleteBoxRef = useRef<any>(null);
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      autoCompleteBoxRef.current &&
-      !autoCompleteBoxRef.current.contains(event.target as Node)
-    ) {
-      setIsSearchFieldFocused(false);
-    }
-  };
+  const searchParams = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+    if (searchParams.get("q")?.trim() !== "") {
+      setSearchQuery(searchParams.get("q") || "");
+    }
+  }, [searchParams]);
 
   const handleSearch = async (e: any) => {
+    setSearchQuery(e.target.value);
     try {
-      // const response = await fetch(`/api/search?q=${query}`, {
-      //   method: "GET",
-      // });
-      // const result = await response.json();
       if (e.code == "Enter") {
         router.push("/search?q=" + e.currentTarget.value);
       }
-      setMovieList(searchMovies(FAKE_DATA_DB, e.target.value));
     } catch (error) {
       console.error(error);
     }
@@ -70,37 +55,9 @@ const AppBar: React.FC<{ onSearch: (query: string) => void }> = ({
             handleSearch(e);
             onSearch(e.currentTarget.value);
           }}
-          onFocus={() => setIsSearchFieldFocused(true)}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          value={searchQuery}
         />
-
-        {movieList.length > 0 && isSearchFieldFocused && (
-          <div
-            ref={autoCompleteBoxRef}
-            className="auto-complete flex flex-col absolute w-full bg-black z-[9999] border my-1 rounded"
-          >
-            {movieList.map((movie: any) => (
-              <Link
-                key={movie.imdb_id}
-                href={`/movies/${movie.imdb_id}`}
-                className="item flex flex-row gap-x-5 border-b last:border-none items-center p-1 my-1"
-                onClick={() => setIsSearchFieldFocused(false)}
-              >
-                <div className="image">
-                  <Image
-                    src={movie.poster_path}
-                    width={40}
-                    height={40}
-                    alt="Image"
-                    className="aspect-square object-cover rounded-sm"
-                  />
-                </div>
-                <div className="title">
-                  <p className="text-base">{movie.original_title}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );

@@ -4,14 +4,13 @@ const options = {
   method: "GET",
   headers: {
     "x-rapidapi-key": process.env.RAPID_API_KEY || "",
-    "x-rapidapi-host": process.env.ONLINE_MOVIE_DB_HOSTNAME || "",
+    "x-rapidapi-host": process.env.IMDB_HOSTNAME || "",
   },
 };
 export async function GET(req: NextRequest) {
-  const q = new URLSearchParams(req.nextUrl.searchParams).get("q");
+  const t = new URLSearchParams(req.nextUrl.searchParams).get("t");
   const url =
-    "https://online-movie-database.p.rapidapi.com/auto-complete?q=" +
-    encodeURI(q || "");
+    "https://imdb146.p.rapidapi.com/v1/title/?id=" + encodeURI(t || "");
 
   try {
     const response = await fetch(url, options);

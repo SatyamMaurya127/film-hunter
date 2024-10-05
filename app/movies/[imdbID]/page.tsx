@@ -1,14 +1,40 @@
 import MoviePageClient from "@/components/pages/MoviePage";
-import { FAKE_DATA_DB, getMovie, sortMovies } from "@/lib/db";
-import { useSearchParams } from "next/navigation";
+import type { Metadata, ResolvingMetadata } from "next";
 import React from "react";
 
-const MoviePage: React.FC<{ params: { imdbID: string } }> = ({ params }) => {
-  const movies = sortMovies(FAKE_DATA_DB);
+type Props = { params: { imdbID: string } };
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  let data = await fetch(
+    `http://localhost:3000/api/get-movie?t=${params.imdbID}`
+  );
+  let _fetchedMovies = await data.json();
+
+  return {
+    title: _fetchedMovies.originalTitleText.text,
+  };
+}
+
+const MoviePage: React.FC<Props> = async ({ params }) => {
+  let movie: any = {};
+
+  try {
+    let data = await fetch(
+      `http://localhost:3000/api/get-movie?t=${params.imdbID}`
+    );
+    let _fetchedMovies = await data.json();
+
+    movie = _fetchedMovies;
+  } catch (err) {
+    console.log(err);
+  }
 
   return (
     <div>
-      <MoviePageClient movie={getMovie(movies, params.imdbID || "")} />
+      <MoviePageClient movie={movie} />
     </div>
   );
 };
