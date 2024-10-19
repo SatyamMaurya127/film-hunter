@@ -10,17 +10,17 @@ export function cn(...inputs: ClassValue[]) {
 
 export function formatMovieRuntime(numberOfMinutes: number) {
   //create duration object from moment.duration
-  var duration = moment.duration(numberOfMinutes, "minutes");
+  const duration = moment.duration(numberOfMinutes, "minutes");
 
   //calculate hours
-  var hh =
+  const hh =
     duration.years() * (365 * 24) +
     duration.months() * (30 * 24) +
     duration.days() * 24 +
     duration.hours();
 
   //get minutes
-  var mm = duration.minutes();
+  const mm = duration.minutes();
 
   //return total time in hh:mm format
   return hh + " h " + mm + " min";
@@ -58,8 +58,11 @@ export const formatBudgetOrRevenue = (budget: number, currency: string) => {
   return new Intl.NumberFormat("en-US").format(budget);
 };
 
-export const searchMovies = (movies: any[], query: string) => {
-  const _filteredMovies = [];
+export const searchMovies = (
+  movies: { original_title: string }[],
+  query: string
+) => {
+  const _filteredMovies: { original_title: string }[] = [];
 
   for (let i = 0; i < movies.length; i++) {
     if (
@@ -77,7 +80,7 @@ export const searchMovies = (movies: any[], query: string) => {
 export const parseMovieDataToPoster = (
   movie: Movie["moreLikeThisTitle"]
 ): MoviePoster[] => {
-  let _fetchedMovies = [];
+  const _fetchedMovies = [];
 
   _fetchedMovies.push(
     movie.map((m) => {

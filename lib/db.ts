@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Movie } from "@/types/Movies";
 
 export const sortMovies = (movies: any[]) => {
@@ -58,20 +59,20 @@ export const _parseIMDBChunkData = (movie: any): Movie => {
   }
 
   function getGenres(genres: any[]) {
-    let _genres: any[] = [];
+    const _genres: any[] = [];
 
     _genres.push(genres.map((genre) => genre.text));
     return _genres[0];
   }
 
   function getCredits(credits: any[]) {
-    let _credits: any[] = [];
+    const _credits: any[] = [];
 
     _credits.push(
       credits.map((credit) => ({
         as: credit.category.text,
         list: () => {
-          let _creditList: any[] = [];
+          const _creditList: any[] = [];
           _creditList.push(
             credit.credits.map((listName: any) => listName.name.nameText)
           );
@@ -84,7 +85,7 @@ export const _parseIMDBChunkData = (movie: any): Movie => {
   }
 
   function getProductions(productions: any[]) {
-    let _prods: any[] = [];
+    const _prods: any[] = [];
     _prods.push(
       productions.map((prod: any) => prod.node.company.companyText.text)
     );
@@ -92,7 +93,7 @@ export const _parseIMDBChunkData = (movie: any): Movie => {
   }
 
   function getTitleImages(images: any[]) {
-    let _titleImgs: any[] = [];
+    const _titleImgs: any[] = [];
     _titleImgs.push(
       images.map((img) => ({
         w: img.node.width,
@@ -106,7 +107,7 @@ export const _parseIMDBChunkData = (movie: any): Movie => {
   }
 
   function getCast(cast: any[]) {
-    let _cast: any[] = [];
+    const _cast: any[] = [];
 
     _cast.push(
       cast.map((c) => ({
@@ -118,14 +119,14 @@ export const _parseIMDBChunkData = (movie: any): Movie => {
   }
 
   function getMoreLikeThisTitle(titles: any[]) {
-    let _titles: any[] = [];
+    const _titles: any[] = [];
 
     _titles.push(titles.map((t) => t.node));
     return _titles[0];
   }
 
   function getFilmingLoc(locations: any[]) {
-    let _locs: any[] = [];
+    const _locs: any[] = [];
 
     _locs.push(locations.map((loc) => loc.node.location));
     return _locs[0];

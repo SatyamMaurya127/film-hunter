@@ -1,7 +1,6 @@
-import React from "react";
 import Image from "next/image";
-import { Card, CardDescription, CardHeader, CardTitle } from "./card";
-import { Badge } from "./badge";
+import React from "react";
+import { Card } from "./card";
 
 interface MovieCardProps {
   title: string;
