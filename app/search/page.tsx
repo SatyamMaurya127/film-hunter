@@ -1,15 +1,16 @@
 import MoviesGrid from "@/components/MoviesGrid";
 import { MoviePoster } from "@/types/Movies";
 
-const SearchPage = async (params: any) => {
-  let movies: MoviePoster[][] = [];
+const SearchPage = async (params: { searchParams: { q: string } }) => {
+  const movies: MoviePoster[][] = [];
 
-  let data = await fetch(
+  const data = await fetch(
     `http://localhost:3000/api/search?q=${params.searchParams.q}`
   );
-  let _fetchedMovies = await data.json();
+  const _fetchedMovies = await data.json();
 
   movies.push(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     _fetchedMovies.d.map((m: any) => {
       if (m.qid) {
         return {

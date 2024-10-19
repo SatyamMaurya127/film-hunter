@@ -2,7 +2,6 @@
 
 import { MoviePoster } from "@/types/Movies";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import React from "react";
 import MovieCard from "./ui/movie-card";
 
@@ -11,8 +10,6 @@ interface MoviesGridProps {
 }
 
 const MoviesGrid: React.FC<MoviesGridProps> = ({ movies }) => {
-  const searchParams = useSearchParams();
-
   return (
     <section className="p-4 w-full">
       <div className=" w-full h-full p-1 flex flex-row gap-10 justify-center flex-wrap mt-5">

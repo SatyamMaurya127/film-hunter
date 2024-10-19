@@ -57,7 +57,7 @@ const MoviePageClient: React.FC<{ movie: Movie }> = ({ movie: _m }) => {
             </div>
             <div className="genres flex flex-row gap-x-5">
               {movie.genres.map((genre, index) => (
-                <p className=" font-extrabold text-lg">
+                <p key={index} className=" font-extrabold text-lg">
                   {genre}
                   {index != movie.genres.length - 1 && (
                     <span className="ml-3"> • </span>
@@ -169,16 +169,20 @@ const MoviePageClient: React.FC<{ movie: Movie }> = ({ movie: _m }) => {
                 <div className="info py-2 flex flex-col gap-y-3">
                   <h4 className="text-xl font-extrabold">Keywords</h4>
                   <h5 className="text-lg font-bold text-gray-400">
-                    {movie.keywords.map((keyword) => (
-                      <span className="px-1">{keyword}</span>
+                    {movie.keywords.map((keyword, i) => (
+                      <span key={i} className="px-1">
+                        {keyword}
+                      </span>
                     ))}
                   </h5>
                 </div>
                 <div className="info py-2 flex flex-col gap-y-3">
                   <h4 className="text-xl font-extrabold">Filming Locations</h4>
                   <h5 className="text-lg font-bold text-gray-400">
-                    {movie.filmingLocations.map((loc) => (
-                      <span className="px-1">{loc}</span>
+                    {movie.filmingLocations.map((loc, i) => (
+                      <span key={i} className="px-1">
+                        {loc}
+                      </span>
                     ))}
                   </h5>
                 </div>
@@ -189,8 +193,8 @@ const MoviePageClient: React.FC<{ movie: Movie }> = ({ movie: _m }) => {
                       <div className="py-1" key={credit.as}>
                         <span className="px-1">{credit.as}: </span>
                         <span className="text-white">
-                          {credit.list().map((cred) => (
-                            <span>{cred.text}, </span>
+                          {credit.list().map((cred, i) => (
+                            <span key={i}>{cred.text}, </span>
                           ))}
                         </span>
                       </div>
@@ -202,8 +206,8 @@ const MoviePageClient: React.FC<{ movie: Movie }> = ({ movie: _m }) => {
                     Studio & Productions
                   </h4>
                   <h5 className="text-lg font-bold text-gray-400">
-                    {movie.productionCompanies.map((company) => (
-                      <span>{company}, </span>
+                    {movie.productionCompanies.map((company, i) => (
+                      <span key={i}>{company}, </span>
                     ))}
                   </h5>
                 </div>

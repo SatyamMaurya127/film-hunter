@@ -22,7 +22,7 @@ export default function PageTransition({
 }: {
   children: React.ReactNode;
 }) {
-  let pathname = usePathname();
+  const pathname = usePathname();
 
   return (
     <>

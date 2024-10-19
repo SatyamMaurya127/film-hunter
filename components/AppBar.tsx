@@ -19,8 +19,8 @@ const AppBar: React.FC<{ onSearch: (query: string) => void }> = ({
     }
   }, [searchParams]);
 
-  const handleSearch = async (e: any) => {
-    setSearchQuery(e.target.value);
+  const handleSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    setSearchQuery(e.currentTarget.value);
     try {
       if (e.code == "Enter") {
         router.push("/search?q=" + e.currentTarget.value);

@@ -1,17 +1,15 @@
 import MoviePageClient from "@/components/pages/MoviePage";
-import type { Metadata, ResolvingMetadata } from "next";
+import { Movie } from "@/types/Movies";
+import type { Metadata } from "next";
 import React from "react";
 
 type Props = { params: { imdbID: string } };
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  let data = await fetch(
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const data = await fetch(
     `http://localhost:3000/api/get-movie?t=${params.imdbID}`
   );
-  let _fetchedMovies = await data.json();
+  const _fetchedMovies = await data.json();
 
   return {
     title: _fetchedMovies.originalTitleText.text,
@@ -19,13 +17,13 @@ export async function generateMetadata(
 }
 
 const MoviePage: React.FC<Props> = async ({ params }) => {
-  let movie: any = {};
+  let movie = {};
 
   try {
-    let data = await fetch(
+    const data = await fetch(
       `http://localhost:3000/api/get-movie?t=${params.imdbID}`
     );
-    let _fetchedMovies = await data.json();
+    const _fetchedMovies = await data.json();
 
     movie = _fetchedMovies;
   } catch (err) {
@@ -34,7 +32,7 @@ const MoviePage: React.FC<Props> = async ({ params }) => {
 
   return (
     <div>
-      <MoviePageClient movie={movie} />
+      <MoviePageClient movie={movie as Movie} />
     </div>
   );
 };
