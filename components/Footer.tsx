@@ -10,9 +10,16 @@ const Footer = () => {
       </h2>
       <h2 className="text-lg font-light text-gray-400 tracking-wide">
         Designed & Developed By{" "}
-        <Link href="https://satyam-portfolio-five.vercel.app" target="_blank">
-          <b className="text-white font-extrabold underline">Satyam Maurya</b>
-        </Link>
+        <b className="text-white underline">
+          <Link
+            href="https://satyam-portfolio-five.vercel.app"
+            className="font-extrabold"
+            target="_blank"
+          >
+            Satyam Maurya
+          </Link>{" "}
+          & Team
+        </b>
       </h2>
     </footer>
   );
