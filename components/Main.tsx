@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import AppBar from "./AppBar";
 
 const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div>
+    <Suspense>
       <AppBar onSearch={() => {}} />
       {children}
-    </div>
+    </Suspense>
   );
 };
 
