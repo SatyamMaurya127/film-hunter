@@ -29,7 +29,7 @@ export const _parseIMDBChunkData = (movie: any): Movie => {
     keywords: [""],
     isAdult: movie.isAdult,
     genres: [""],
-    plot: movie.plot.plotText.plainText,
+    plot: movie.plot?.plotText?.plainText,
     credits: {},
     productionCompanies: [""],
     awardSummary: movie.prestigiousAwardSummary,

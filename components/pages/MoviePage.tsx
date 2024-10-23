@@ -29,7 +29,7 @@ const MoviePageClient: React.FC<{ movie: Movie }> = ({ movie: _m }) => {
         <div className="absolute w-full h-full bg-gradient-to-l from-transparent via-black/55 to-black/80 z-10" />
         <div className="absolute w-full h-full bg-gradient-to-b from-transparent via-black/10 to-black z-10" />
         <Image
-          src={movie.titleImages[0].url || ""}
+          src={movie.titleImages[0]?.url || ""}
           alt="image"
           fill
           className="w-full h-full object-cover absolute z-0"

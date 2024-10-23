@@ -24,6 +24,7 @@ const AppBar: React.FC<{ onSearch: (query: string) => void }> = ({
     try {
       if (e.code == "Enter") {
         router.push("/search?q=" + e.currentTarget.value);
+        router.refresh();
       }
     } catch (error) {
       console.error(error);

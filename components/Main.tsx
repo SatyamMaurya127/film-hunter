@@ -5,10 +5,11 @@ import AppBar from "./AppBar";
 
 const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <Suspense>
+    <>
+      <Suspense fallback={"Loading..."}></Suspense>
       <AppBar onSearch={() => {}} />
       {children}
-    </Suspense>
+    </>
   );
 };
 

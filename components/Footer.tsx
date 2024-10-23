@@ -1,14 +1,12 @@
 "use client";
 
-import Link from "next/link";
-
 const Footer = () => {
   return (
     <footer className="flex flex-row justify-between items-center px-10 py-5 border-t">
       <h2 className="text-lg font-extrabold tracking-wide">
         &copy; FILM HUNTER
       </h2>
-      <h2 className="text-lg font-light text-gray-400 tracking-wide">
+      {/* <h2 className="text-lg font-light text-gray-400 tracking-wide">
         Designed & Developed By{" "}
         <b className="text-white underline">
           <Link
@@ -20,7 +18,7 @@ const Footer = () => {
           </Link>{" "}
           & Team
         </b>
-      </h2>
+      </h2> */}
     </footer>
   );
 };

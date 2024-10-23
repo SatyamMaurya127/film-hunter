@@ -1,5 +1,20 @@
 import MoviesGrid from "@/components/MoviesGrid";
 import { MoviePoster } from "@/types/Movies";
+import { Metadata } from "next";
+
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata({
+  searchParams,
+}: Props): Promise<Metadata> {
+  const q = (await searchParams).q;
+  return {
+    title: "Search for " + q || "",
+  };
+}
 
 const SearchPage = async (params: { searchParams: { q: string } }) => {
   const movies: MoviePoster[][] = [];
@@ -8,7 +23,6 @@ const SearchPage = async (params: { searchParams: { q: string } }) => {
     `http://localhost:3000/api/search?q=${params.searchParams.q}`
   );
   const _fetchedMovies = await data.json();
-
   movies.push(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     _fetchedMovies.d.map((m: any) => {
@@ -21,6 +35,7 @@ const SearchPage = async (params: { searchParams: { q: string } }) => {
       }
     })
   );
+  console.log(movies);
 
   if (movies.length <= 0)
     return (
